@@ -1,7 +1,8 @@
 let scissors;
 let rock;
 let paper;
-let hands = document.querySelectorAll(".player");
+let players = document.querySelectorAll(".player");
+const hands = ["rock", "paper", "scissors"];
 
 let playerChoice = "";
 let computerChoice = "";
@@ -24,6 +25,11 @@ function playerChooses() {
   document.querySelector(".rock").addEventListener("click", choseRock);
   document.querySelector(".paper").addEventListener("click", chosePaper);
   document.querySelector(".scissors").addEventListener("click", choseScissors);
+}
+
+function showHand() {
+  document.querySelector("#player").classList.add(playerChoice);
+  shake();
 }
 
 function choseRock() {
@@ -57,34 +63,28 @@ function choseScissors() {
 
 function shake() {
   // hands.forEach((player) => player.classList.remove("shake"));
-  hands.forEach((player) => player.classList.add("shake"));
-  addEventListener("animationend", removeClasses);
+  players.forEach((player) => player.classList.add("shake"));
+  addEventListener("animationend", removeShake);
 }
 
-function removeClasses() {
-  hands.forEach((player) => player.classList.remove("shake"));
+function removeShake() {
+  players.forEach((player) => player.classList.remove("shake"));
 }
 
 function computerChooses() {
-  myRand = Math.floor(Math.random() * 3) + 1;
-  if (myRand == 1) {
-    computerChoice = "rock";
-  } else if (myRand == 2) {
-    computerChoice = "paper";
-  } else {
-    computerChoice = "scissors";
-  }
-  console.log(myRand);
+  myRand = Math.floor(Math.random() * 3);
+  computerChoice = hands[myRand];
+  console.log(myRand, computerChoice);
   determineResult();
 }
 
 function determineResult() {
-  if ((playerChoice == "rock" && computerChoice == "scissors") || (playerChoice == "paper" && computerChoice == "rock") || (playerChoice == "scissors" && computerChoice == "paper")) {
-    playerWin();
-  } else if ((playerChoice == "paper" && computerChoice == "scissors") || (playerChoice == "scissors" && computerChoice == "rock") || (playerChoice == "rock" && computerChoice == "paper")) {
-    playerLoss();
-  } else {
+  if (playerChoice === computerChoice) {
     draw();
+  } else if ((playerChoice === "rock" && computerChoice === "scissors") || (playerChoice === "scissors" && computerChoice === "paper") || (playerChoice === "paper" && computerChoice === "rock")) {
+    playerWin();
+  } else {
+    playerLoss();
   }
 }
 
