@@ -22,49 +22,57 @@ function start() {
 }
 
 function playerChooses() {
-  document.querySelector(".rock").addEventListener("click", choseRock);
-  document.querySelector(".paper").addEventListener("click", chosePaper);
-  document.querySelector(".scissors").addEventListener("click", choseScissors);
+  document.querySelector(".rock").addEventListener("click", computerChooses);
+  document.querySelector(".paper").addEventListener("click", computerChooses);
+  document.querySelector(".scissors").addEventListener("click", computerChooses);
 }
 
 function showHand() {
-  document.querySelector("#player").classList.add(playerChoice);
+  // console.log(`clicked button class: ${playerChoice}`);
+  players.forEach((player) => {
+    player.classList.remove("scissors");
+    player.classList.remove("paper");
+    player.classList.remove("rock");
+  });
+  document.querySelector("#player1").classList.add(playerChoice);
+  document.querySelector("#player2").classList.add(computerChoice);
   shake();
 }
 
-function choseRock() {
-  playerChoice = "rock";
-  document.querySelector("#player1").classList.remove("scissors");
-  document.querySelector("#player1").classList.remove("paper");
-  document.querySelector("#player1").classList.add("rock");
-  shake();
-  computerChooses();
-}
-function chosePaper() {
-  playerChoice = "paper";
-  // hands.forEach((player) => player.classList.remove("shake"));
-  document.querySelector("#player1").classList.remove("rock");
-  document.querySelector("#player1").classList.remove("scissors");
-  document.querySelector("#player1").classList.add("paper");
-  shake();
-  computerChooses();
-}
+// function choseRock() {
+//   playerChoice = "rock";
+//   document.querySelector("#player1").classList.remove("scissors");
+//   document.querySelector("#player1").classList.remove("paper");
+//   document.querySelector("#player1").classList.add("rock");
+//   shake();
+//   computerChooses();
+// }
+// function chosePaper() {
+//   playerChoice = "paper";
+//   // hands.forEach((player) => player.classList.remove("shake"));
+//   document.querySelector("#player1").classList.remove("rock");
+//   document.querySelector("#player1").classList.remove("scissors");
+//   document.querySelector("#player1").classList.add("paper");
+//   shake();
+//   computerChooses();
+// }
 
-function choseScissors() {
-  playerChoice = "scissors";
+// function choseScissors() {
+//   playerChoice = "scissors";
 
-  document.querySelector("#player1").classList.remove("rock");
-  document.querySelector("#player1").classList.remove("paper");
-  document.querySelector("#player1").classList.add("scissors");
-  // hands.forEach((player) => player.classList.remove("shake"));
-  shake();
-  computerChooses();
-}
+//   document.querySelector("#player1").classList.remove("rock");
+//   document.querySelector("#player1").classList.remove("paper");
+//   document.querySelector("#player1").classList.add("scissors");
+//   // hands.forEach((player) => player.classList.remove("shake"));
+//   shake();
+//   computerChooses();
+// }
 
 function shake() {
   // hands.forEach((player) => player.classList.remove("shake"));
   players.forEach((player) => player.classList.add("shake"));
   addEventListener("animationend", removeShake);
+  addEventListener("animationend", determineResult);
 }
 
 function removeShake() {
@@ -72,14 +80,17 @@ function removeShake() {
 }
 
 function computerChooses() {
+  playerChoice = event.target.classList;
   myRand = Math.floor(Math.random() * 3);
   computerChoice = hands[myRand];
-  console.log(myRand, computerChoice);
-  determineResult();
+  // console.log(myRand, computerChoice);
+  showHand(playerChoice, computerChoice);
 }
 
 function determineResult() {
-  if (playerChoice === computerChoice) {
+  playerChoice = `${playerChoice}`;
+  computerChoice = `${computerChoice}`;
+  if (playerChoice == computerChoice) {
     draw();
   } else if ((playerChoice === "rock" && computerChoice === "scissors") || (playerChoice === "scissors" && computerChoice === "paper") || (playerChoice === "paper" && computerChoice === "rock")) {
     playerWin();
