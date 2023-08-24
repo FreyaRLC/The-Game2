@@ -1,6 +1,6 @@
-let scissors;
-let rock;
-let paper;
+// let scissors;
+// let rock;
+// let paper;
 let players = document.querySelectorAll(".player");
 const hands = ["rock", "paper", "scissors"];
 
@@ -9,10 +9,6 @@ let computerChoice = "";
 
 let myRand;
 
-//           🤚
-//        😳/
-//      _/||        RESULTS ONLY SHOW IN CONSOLE LOG SO FAR!! but it technically works
-//     _/¯  ¯\_
 
 document.addEventListener("DOMContentLoaded", start);
 
@@ -38,35 +34,6 @@ function showHand() {
   document.querySelector("#player2").classList.add(computerChoice);
   shake();
 }
-
-// function choseRock() {
-//   playerChoice = "rock";
-//   document.querySelector("#player1").classList.remove("scissors");
-//   document.querySelector("#player1").classList.remove("paper");
-//   document.querySelector("#player1").classList.add("rock");
-//   shake();
-//   computerChooses();
-// }
-// function chosePaper() {
-//   playerChoice = "paper";
-//   // hands.forEach((player) => player.classList.remove("shake"));
-//   document.querySelector("#player1").classList.remove("rock");
-//   document.querySelector("#player1").classList.remove("scissors");
-//   document.querySelector("#player1").classList.add("paper");
-//   shake();
-//   computerChooses();
-// }
-
-// function choseScissors() {
-//   playerChoice = "scissors";
-
-//   document.querySelector("#player1").classList.remove("rock");
-//   document.querySelector("#player1").classList.remove("paper");
-//   document.querySelector("#player1").classList.add("scissors");
-//   // hands.forEach((player) => player.classList.remove("shake"));
-//   shake();
-//   computerChooses();
-// }
 
 function shake() {
   // hands.forEach((player) => player.classList.remove("shake"));
@@ -119,30 +86,3 @@ function draw() {
   document.querySelector("#draw").classList.remove("hidden");
   console.log("It's a draw!");
 }
-
-// if (playerChoice == "rock" && computerChoice == "scissors" || playerChoice == "paper" && computerChoice == "rock" || playerChoice == "scissors" && computerChoice == "paper"){
-// playerWin();
-// } else if(playerChoice == "paper" && computerChoice == "scissors" || playerChoice == "scissors" && computerChoice == "rock" || playerChoice == "rock" && computerChoice == "paper"){
-//     playerLoss();
-// } else(){
-//     draw();
-// }
-
-// eller
-
-// if(playerChoice == "rock" && computerChoice == "scissors"){
-//     playerWin();
-// }else if(playerChoice == "rock" && computerChoice == "paper"){
-//     playerLoss();
-// }else if(playerChoice == "paper" && computerChoice == "rock"){
-//     playerWin();
-// }else if(playerChoice == "paper" && computerChoice == "scissors"){
-//     playerLoss();
-// }else if(playerChoice == "scissors" && computerChoice == "paper"){
-//     playerWin();
-// }else if(playerChoice == "scissors" && computerChoice == "rock"){
-//     playerLoss();
-// }
-// else(playerChoice === computerChoice){
-//     draw();
-// }
